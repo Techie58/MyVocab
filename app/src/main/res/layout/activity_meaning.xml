@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MeaningActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:backgroundTint="#FFEB3B"
+        android:paddingStart="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:textColor="@color/black"
+            android:paddingStart="8dp"
+            android:text="Word" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#FFC107"
+        android:paddingStart="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <TextView
+            android:id="@+id/txtMeaning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:text="Meaning" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#FF5722"
+        android:paddingStart="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+        <TextView
+            android:id="@+id/txtExample"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:paddingStart="8dp"
+            android:text="Example"
+            android:textSize="22sp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#BD2020"
+        android:backgroundTint="#B91111"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3">
+
+        <TextView
+            android:id="@+id/txtSynonyms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:paddingStart="8dp"
+            android:text="synonyms"
+            android:textSize="23sp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/translationCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#BD2020"
+        android:backgroundTint="#B91111"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView4">
+
+        <TextView
+            android:id="@+id/txtTranslation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:paddingStart="8dp"
+            android:text="Translation"
+            android:textSize="23sp" />
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

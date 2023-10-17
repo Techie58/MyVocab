@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    android:layout_marginBottom="1dp"
+    app:cardElevation="14dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/wordLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/lWord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp">
+        <TextView
+            android:id="@+id/txtWord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/wordSpek"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="24dp"
+            android:scaleType="fitXY"
+            android:layout_alignParentEnd="true"
+            app:srcCompat="@drawable/baseline_volume_up_24" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lMeaning"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/textMeaning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingStart="8dp"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/meaningSpek"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="24dp"
+            android:scaleType="fitXY"
+            android:layout_alignParentEnd="true"
+            app:srcCompat="@drawable/baseline_volume_up_24" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.cardview.widget.CardView>
