@@ -3,14 +3,11 @@ package com.example.myvocab;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.myvocab.databinding.ActivityMeaningBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -20,12 +17,10 @@ import com.google.mlkit.nl.translate.Translation;
 import com.google.mlkit.nl.translate.Translator;
 import com.google.mlkit.nl.translate.TranslatorOptions;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 public class MeaningActivity extends AppCompatActivity {
     ActivityMeaningBinding binding;
     Boolean booleanUrdu=false;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,49 +28,22 @@ public class MeaningActivity extends AppCompatActivity {
         binding = ActivityMeaningBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        //Progress dialog start
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setTitle("Downloading...");
+        progressDialog.setMessage("Language Model is downloading....");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+
         Intent intent = getIntent();
         String word = intent.getStringExtra("WORD");
-        binding.txtWord.setText(word);
-        String URL="https://api.dictionaryapi.dev/api/v2/entries/en/"+word;
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, URL, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-
-                try {
-                    JSONObject jsonObject=response.getJSONObject(0);
-                    JSONArray jsonArray=jsonObject.getJSONArray("meanings");
-                    JSONObject jsonObject1=jsonArray.getJSONObject(0);
-                    JSONArray jsonArray1=jsonObject1.getJSONArray("definitions");
-                    JSONObject jsonObject2=jsonArray1.getJSONObject(0);
-                    JSONArray jsonArray2=jsonObject2.getJSONArray("synonyms");
-                    JSONObject jsonObject3=jsonArray2.getJSONObject(0);
-                    String meaning=jsonObject2.getString("definition");
-                    String example=jsonObject2.getString("example");
-                    String synonyms=jsonObject3.getString("synonyms");
-
-
-                    binding.txtMeaning.setText(meaning);
-                    binding.txtExample.setText(example);
-                    binding.txtSynonyms.setText(synonyms);
-                    Toast.makeText(MeaningActivity.this, "Fetching Meaning ..........", Toast.LENGTH_SHORT).show();
-
-                }catch (Exception e){
-                    Toast.makeText(MeaningActivity.this, "This is Exception: "+e, Toast.LENGTH_SHORT).show();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MeaningActivity.this, ""+error, Toast.LENGTH_SHORT).show();
-
-            }
-        });
-        VolleySingleton.getInstance(this).addToRequestQueue(jsonArrayRequest);
-        binding.translationCard.setOnClickListener(view -> getTranslation(word));
+        binding.txtTranslation.setText(word);
+        getTranslation(word);
 
 
 
-    }    private void getTranslation(String word){
+    }private void getTranslation(String word){
         TranslatorOptions options =
                 new TranslatorOptions.Builder()
                         .setSourceLanguage(TranslateLanguage.ENGLISH)
@@ -92,7 +60,8 @@ public class MeaningActivity extends AppCompatActivity {
                         new OnSuccessListener() {
                             @Override
                             public void onSuccess(Object o) {
-                                Toast.makeText(MeaningActivity.this, "Language Model is Downloded", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                                Toast.makeText(MeaningActivity.this, "Language Model is Downloaded", Toast.LENGTH_SHORT).show();
                                 booleanUrdu=true;
                             }
                         })
@@ -104,18 +73,21 @@ public class MeaningActivity extends AppCompatActivity {
                                 booleanUrdu=false;
                             }
                         });
-        englishGermanTranslator.translate(word).addOnSuccessListener(new OnSuccessListener<String>() {
-            @Override
-            public void onSuccess(String s) {
-                binding.txtTranslation.setText(s);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                binding.txtTranslation.setText(String.valueOf(e));
-            }
-        });
+        binding.txtTranslation.setOnClickListener(view -> {
 
+            englishGermanTranslator.translate(word).addOnSuccessListener(new OnSuccessListener<String>() {
+                @Override
+                public void onSuccess(String s) {
+                    binding.txtTranslation.setText(s);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    binding.txtTranslation.setText(String.valueOf(e));
+                }
+            });
+
+        });
     }
 
 
