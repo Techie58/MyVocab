@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginEnd="2dp"
-        android:backgroundTint="#FFEB3B"
+        android:backgroundTint="#FEFEFE"
         android:paddingStart="8dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
@@ -25,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="35sp"
+            android:textStyle="bold"
             android:textColor="@color/black"
             android:paddingStart="8dp"
             android:text="Word" />
@@ -37,7 +38,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:backgroundTint="#FFC107"
+        android:backgroundTint="#FEFEFE"
         android:paddingStart="8dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
@@ -51,6 +52,7 @@
             android:layout_height="wrap_content"
             android:paddingStart="8dp"
             android:textSize="25sp"
+            android:textStyle="bold"
             android:textColor="@color/black"
             android:text="Meaning" />
     </androidx.cardview.widget.CardView>
@@ -88,8 +90,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="#BD2020"
-        android:backgroundTint="#B91111"
+        android:backgroundTint="#090606"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +103,9 @@
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:paddingStart="8dp"
-            android:text="synonyms"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:text="Synonyms"
             android:textSize="23sp" />
     </androidx.cardview.widget.CardView>
 
@@ -113,8 +116,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="#BD2020"
-        android:backgroundTint="#B91111"
+        android:backgroundTint="#220F0F"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -127,7 +129,9 @@
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:paddingStart="8dp"
-            android:text="Translation"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:text="This is changed text"
             android:textSize="23sp" />
     </androidx.cardview.widget.CardView>
 
