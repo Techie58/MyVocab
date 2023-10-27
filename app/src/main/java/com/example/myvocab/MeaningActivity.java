@@ -60,26 +60,33 @@ public class MeaningActivity extends AppCompatActivity {
         dialog=new Dialog(this);
         dialog.setContentView(R.layout.text_size_layout);
         binding.translationCard.setOnClickListener(view -> {
-            dialog.show();
-            AppCompatButton txtSizeBtn=dialog.findViewById(R.id.txtSizeBtn);
-            AppCompatImageButton lowSize,highSize;
-            lowSize=dialog.findViewById(R.id.txtSizeLowBtn);
-            highSize=dialog.findViewById(R.id.txtSizeHighBtn);
-            EditText editText_Size=dialog.findViewById(R.id.txtSizeEditTxt);
-            edtTxt=(int) binding.txtTranslation.getTextSize();
-            lowSize.setOnClickListener(view12 -> {
-                if (edtTxt>15) {
-                    edtTxt -= 1;
-                    editText_Size.setText(String.valueOf(edtTxt));
-                }else Toast.makeText(MeaningActivity.this, "Value less then 15 cannot be used...", Toast.LENGTH_SHORT).show();
-            });
-            highSize.setOnClickListener(view1 -> {
-                edtTxt += 1;
+            showTextDialog();
+        });
+        binding.txtTranslation.setOnClickListener(view -> showTextDialog());
+
+    }
+
+    private void showTextDialog() {
+        dialog.show();
+        AppCompatButton txtSizeBtn=dialog.findViewById(R.id.txtSizeBtn);
+        AppCompatImageButton lowSize,highSize;
+        lowSize=dialog.findViewById(R.id.txtSizeLowBtn);
+        highSize=dialog.findViewById(R.id.txtSizeHighBtn);
+        EditText editText_Size=dialog.findViewById(R.id.txtSizeEditTxt);
+        edtTxt=(int) binding.txtTranslation.getTextSize();
+        lowSize.setOnClickListener(view12 -> {
+            if (edtTxt>15) {
+                edtTxt -= 1;
                 editText_Size.setText(String.valueOf(edtTxt));
-            });
-            txtSizeBtn.setOnClickListener(view1 -> {
-                binding.txtTranslation.setTextSize(Integer.parseInt(editText_Size.getText().toString()));
-                dialog.dismiss();});});
+            }else Toast.makeText(MeaningActivity.this, "Value less then 15 cannot be used...", Toast.LENGTH_SHORT).show();
+        });
+        highSize.setOnClickListener(view1 -> {
+            edtTxt += 1;
+            editText_Size.setText(String.valueOf(edtTxt));
+        });
+        txtSizeBtn.setOnClickListener(view1 -> {
+            binding.txtTranslation.setTextSize(Integer.parseInt(editText_Size.getText().toString()));
+            dialog.dismiss();});
 
     }
 
