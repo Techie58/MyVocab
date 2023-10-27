@@ -2,10 +2,16 @@ package com.example.myvocab;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageButton;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+
 import android.widget.Toast;
 
 import com.example.myvocab.databinding.ActivityMeaningBinding;
@@ -19,8 +25,10 @@ import com.google.mlkit.nl.translate.TranslatorOptions;
 
 public class MeaningActivity extends AppCompatActivity {
     ActivityMeaningBinding binding;
+    int edtTxt;
     Boolean booleanUrdu=false;
     ProgressDialog progressDialog;
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +43,8 @@ public class MeaningActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.show();
 
+        textSize();
+        
 
         Intent intent = getIntent();
         String word = intent.getStringExtra("WORD");
@@ -43,7 +53,37 @@ public class MeaningActivity extends AppCompatActivity {
 
 
 
-    }private void getTranslation(String word){
+    }
+
+    private void textSize() {
+
+        dialog=new Dialog(this);
+        dialog.setContentView(R.layout.text_size_layout);
+        binding.translationCard.setOnClickListener(view -> {
+            dialog.show();
+            AppCompatButton txtSizeBtn=dialog.findViewById(R.id.txtSizeBtn);
+            AppCompatImageButton lowSize,highSize;
+            lowSize=dialog.findViewById(R.id.txtSizeLowBtn);
+            highSize=dialog.findViewById(R.id.txtSizeHighBtn);
+            EditText editText_Size=dialog.findViewById(R.id.txtSizeEditTxt);
+            edtTxt=(int) binding.txtTranslation.getTextSize();
+            lowSize.setOnClickListener(view12 -> {
+                if (edtTxt>15) {
+                    edtTxt -= 1;
+                    editText_Size.setText(String.valueOf(edtTxt));
+                }else Toast.makeText(MeaningActivity.this, "Value less then 15 cannot be used...", Toast.LENGTH_SHORT).show();
+            });
+            highSize.setOnClickListener(view1 -> {
+                edtTxt += 1;
+                editText_Size.setText(String.valueOf(edtTxt));
+            });
+            txtSizeBtn.setOnClickListener(view1 -> {
+                binding.txtTranslation.setTextSize(Integer.parseInt(editText_Size.getText().toString()));
+                dialog.dismiss();});});
+
+    }
+
+    private void getTranslation(String word){
         TranslatorOptions options =
                 new TranslatorOptions.Builder()
                         .setSourceLanguage(TranslateLanguage.ENGLISH)
