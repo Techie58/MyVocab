@@ -73,21 +73,19 @@ public class MeaningActivity extends AppCompatActivity {
                                 booleanUrdu=false;
                             }
                         });
-        binding.txtTranslation.setOnClickListener(view -> {
 
-            englishGermanTranslator.translate(word).addOnSuccessListener(new OnSuccessListener<String>() {
-                @Override
-                public void onSuccess(String s) {
-                    binding.txtTranslation.setText(s);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    binding.txtTranslation.setText(String.valueOf(e));
-                }
-            });
-
+        englishGermanTranslator.translate(word).addOnSuccessListener(new OnSuccessListener<String>() {
+            @Override
+            public void onSuccess(String s) {
+                binding.txtTranslation.setText(s);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                binding.txtTranslation.setText(String.valueOf(e));
+            }
         });
+
     }
 
 
