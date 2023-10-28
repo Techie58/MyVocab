@@ -36,32 +36,32 @@ public class MeaningActivity extends AppCompatActivity {
         binding = ActivityMeaningBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        //Progress dialog start
-        progressDialog=new ProgressDialog(this);
-        progressDialog.setTitle("Downloading...");
-        progressDialog.setMessage("Language Model is downloading....");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-
-        textSize();
-        
-
         Intent intent = getIntent();
         String word = intent.getStringExtra("WORD");
-        binding.txtTranslation.setText(word);
+
+        showProgressDialog();
+        textSizeDialog();
         getTranslation(word);
+
+
+        binding.txtTranslation.setText(word);
 
 
 
     }
 
-    private void textSize() {
+    private void showProgressDialog() {
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setTitle("Downloading...");
+        progressDialog.setMessage("Language Model is downloading....");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
 
+    private void textSizeDialog() {
         dialog=new Dialog(this);
         dialog.setContentView(R.layout.text_size_layout);
-        binding.translationCard.setOnClickListener(view -> {
-            showTextDialog();
-        });
+        binding.translationCard.setOnClickListener(view ->showTextDialog());
         binding.txtTranslation.setOnClickListener(view -> showTextDialog());
 
     }
@@ -81,8 +81,10 @@ public class MeaningActivity extends AppCompatActivity {
             }else Toast.makeText(MeaningActivity.this, "Value less then 15 cannot be used...", Toast.LENGTH_SHORT).show();
         });
         highSize.setOnClickListener(view1 -> {
-            edtTxt += 1;
-            editText_Size.setText(String.valueOf(edtTxt));
+            if (edtTxt<200) {
+                edtTxt += 1;
+                editText_Size.setText(String.valueOf(edtTxt));
+            }else Toast.makeText(this, "Above 200 value is not good", Toast.LENGTH_SHORT).show();
         });
         txtSizeBtn.setOnClickListener(view1 -> {
             binding.txtTranslation.setTextSize(Integer.parseInt(editText_Size.getText().toString()));
