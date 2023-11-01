@@ -5,29 +5,23 @@
     android:theme="@style/Theme.MyVocab.AppWidgetContainer">
 
     <TextView
-        android:id="@+id/appwidget_text"
+        android:id="@+id/widget_txt"
         style="@style/Widget.MyVocab.AppWidget.InnerView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:contentDescription="@string/appwidget_text"
         android:text="@string/appwidget_text"
         android:textSize="24sp"
+        android:padding="9dp"
+        android:textColor="@color/white"
         android:textStyle="bold|italic" />
 
-    <TextView
-        android:id="@+id/appwidget_text2"
-        style="@style/Widget.MyVocab.AppWidget.InnerView"
+    <Button
+        android:id="@+id/widget_btn_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="190dp"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/appwidget_text"
-        android:text="@string/appwidget_text2"
-        android:textSize="24sp"
-        android:textStyle="bold|italic" />
+        android:text="Change Word"
+        android:backgroundTint="@color/light_blue_900"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"/>
 </RelativeLayout>

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MyVocab</string>
     <string name="todo">TODO</string>
-    <string name="appwidget_text">This is widget text 1</string>
+    <string name="appwidget_text">Today\'s Word</string>
     <string name="appwidget_text2">This is widget text 2</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
