@@ -5,4 +5,5 @@
     <string name="appwidget_text2">This is widget text 2</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
+    <string name="chang_word">Next Word</string>
 </resources>
