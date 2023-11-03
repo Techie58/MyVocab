@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.appwidget.AppWidgetManager;
 import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Color;
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void filterList(String newText) {
-        List<VocabModel> fList=new ArrayList<>();
+        ArrayList<VocabModel> fList=new ArrayList<>();
         for (VocabModel item : arrVocab){
             if (item.getWord().toLowerCase().contains(newText.toLowerCase())){
                 fList.add(item);}
