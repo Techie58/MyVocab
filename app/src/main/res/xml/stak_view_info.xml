@@ -10,6 +10,6 @@
     android:widgetCategory="home_screen"
     android:previewLayout="@layout/stak_view"
     android:targetCellHeight="2"
-       android:targetCellWidth="2"
+    android:targetCellWidth="2"
     android:initialKeyguardLayout="@layout/stak_view"
 />

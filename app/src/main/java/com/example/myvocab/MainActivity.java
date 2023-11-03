@@ -9,13 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.appwidget.AppWidgetManager;
-import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,15 +24,12 @@ import com.example.myvocab.database.VocabModel;
 import com.example.myvocab.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
     VocabDBHelper vocabDBHelper;
     ActivityMainBinding binding;
     RVAdapter adapter;
-    TextToSpeech textToSpeech;
     ArrayList<VocabModel> arrVocab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
