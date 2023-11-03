@@ -47,7 +47,7 @@ public class StackViewService extends RemoteViewsService {
         @Override
         public RemoteViews getViewAt(int i) {
             RemoteViews remoteViews=new RemoteViews(context.getPackageName(), R.layout.stack_view_layout);
-            remoteViews.setTextViewText(R.id.stackViewEmptyTxt,myData[i]);
+            remoteViews.setTextViewText(R.id.stackView_Item_Txt,myData[i]);
             SystemClock.sleep(500);
             return remoteViews;
         }
