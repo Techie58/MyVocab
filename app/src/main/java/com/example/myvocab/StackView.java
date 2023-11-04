@@ -1,5 +1,6 @@
 package com.example.myvocab;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
@@ -44,6 +45,11 @@ public class StackView extends AppWidgetProvider {
         views.setTextViewText(R.id.stackViewEmptyTxt, widgetText);
         views.setRemoteAdapter(R.id.stackView,serviceIntent);
         views.setEmptyView(R.id.stackView,R.id.stackViewEmptyTxt);
+        Intent intent=new Intent(context,MainActivity.class);
+        PendingIntent pendingIntent=PendingIntent.getActivity(context,0,intent, PendingIntent.FLAG_IMMUTABLE);
+
+        views.setOnClickPendingIntent(R.id.stackView_fram,pendingIntent);
+
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);

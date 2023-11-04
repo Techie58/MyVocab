@@ -1,15 +1,11 @@
 package com.example.myvocab;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.myvocab.Utilites.SwipeFile;
 import com.example.myvocab.adapter.RVAdapter;
 import com.example.myvocab.database.VocabDBHelper;
 import com.example.myvocab.database.VocabModel;
@@ -37,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
         binding=ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         showVocab();
+
+
+        SwipeFile swipeFile=new SwipeFile(this,arrVocab);
+
         binding.searchWord.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -53,35 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.addBtn.setOnClickListener(view -> initShowDialog());
         //Swipe
-        ItemTouchHelper.SimpleCallback simpleCallback=new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                int position=viewHolder.getAdapterPosition();
-                if (direction==ItemTouchHelper.LEFT){
-                    AlertDialog alertDialog=new AlertDialog.Builder(MainActivity.this)
-                            .setTitle("Delete").setMessage("Do you wanna delete this Word")
-                            .setPositiveButton("Yes", (dialogInterface, i) -> {
-                                vocabDBHelper.vocabDao().deleteVocab(new VocabModel(arrVocab.get(position).getWord(),arrVocab.get(position).getMeaning(),arrVocab.get(position).getId()));
-                                Toast.makeText(MainActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
-                                showVocab();
-                            }).setNegativeButton("No", (dialogInterface, i) -> {
-                                showVocab();
-                                Toast.makeText(MainActivity.this, "Swipe Right To Refresh App", Toast.LENGTH_SHORT).show();
-                            }).show();
-                }else {
-                    Intent wordIntent=new Intent(MainActivity.this,MeaningActivity.class);
-                    wordIntent.putExtra("WORD",arrVocab.get(position).getWord());
-                    startActivity(wordIntent);
-                    showVocab();
-                }
-            }
-        };
-        ItemTouchHelper itemTouchHelper=new ItemTouchHelper(simpleCallback);
+        ItemTouchHelper itemTouchHelper=new ItemTouchHelper(swipeFile.simpleCallbackFunction());
         itemTouchHelper.attachToRecyclerView(binding.recyclerView2);
 
     }
