@@ -45,7 +45,6 @@ public class SwipeFile {
                             mainActivity.showVocab();
                         }).setNegativeButton("No", (dialogInterface, i) -> {
                             mainActivity.showVocab();
-                            Toast.makeText(mainActivity, "Swipe Right To Refresh App", Toast.LENGTH_SHORT).show();
                         }).show();
             }else {
                 Intent wordIntent=new Intent(mainActivity, MeaningActivity.class);
