@@ -40,7 +40,7 @@ public class SwipeFile {
                 AlertDialog alertDialog=new AlertDialog.Builder(mainActivity)
                         .setTitle("Delete").setMessage("Do you wanna delete this Word")
                         .setPositiveButton("Yes", (dialogInterface, i) -> {
-                            vocabDBHelper.vocabDao().deleteVocab(new VocabModel(arrVocab.get(position).getWord(),arrVocab.get(position).getMeaning(),arrVocab.get(position).getId()));
+                            vocabDBHelper.vocabDao().deleteVocab(new VocabModel(arrVocab.get(position).getWord(),arrVocab.get(position).getId()));
                             Toast.makeText(mainActivity, "Deleted", Toast.LENGTH_SHORT).show();
                             mainActivity.showVocab();
                         }).setNegativeButton("No", (dialogInterface, i) -> {

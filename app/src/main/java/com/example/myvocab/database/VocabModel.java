@@ -8,19 +8,17 @@ import androidx.room.PrimaryKey;
 public class VocabModel {
     public VocabModel(){}
 
-    private String Word,Meaning;
+    private String Word;
 
     @PrimaryKey(autoGenerate = true)
     private int id;
     @Ignore
-    public VocabModel(String word, String meaning) {
+    public VocabModel(String word) {
         Word = word;
-        Meaning = meaning;
     }
 
-    public VocabModel(String word, String meaning, int id) {
+    public VocabModel(String word, int id) {
         Word = word;
-        Meaning = meaning;
         this.id = id;
     }
 
@@ -32,13 +30,7 @@ public class VocabModel {
         Word = word;
     }
 
-    public String getMeaning() {
-        return Meaning;
-    }
 
-    public void setMeaning(String meaning) {
-        Meaning = meaning;
-    }
 
     public int getId() {
         return id;

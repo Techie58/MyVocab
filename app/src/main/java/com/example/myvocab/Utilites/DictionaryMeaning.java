@@ -20,9 +20,9 @@ public class DictionaryMeaning {
     private static final String API_URL = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 
     private final ActivityMeaningBinding binding;
-    private String word;
+    private final String word;
     private ProgressDialog dictionaryProgressDialog;
-    private Context context;
+    private final Context context;
 
     public DictionaryMeaning(ActivityMeaningBinding binding, String word, Context context) {
         this.context = context;

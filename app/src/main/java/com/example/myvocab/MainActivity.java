@@ -86,14 +86,12 @@ public class MainActivity extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
         EditText edtWord=dialog.findViewById(R.id.etdWord);
-        EditText edtMeaning=dialog.findViewById(R.id.edtMeaning);
         Button edtAddButton=dialog.findViewById(R.id.edtAddBtn);
 
         edtAddButton.setOnClickListener(view -> {
             String Word=edtWord.getText().toString();
-            String Meaning=edtMeaning.getText().toString();
             if (!Word.equals("")){
-                vocabDBHelper.vocabDao().addVocab(new VocabModel(Word,Meaning));
+                vocabDBHelper.vocabDao().addVocab(new VocabModel(Word));
                 Toast.makeText(this, "Saved in DataBase", Toast.LENGTH_SHORT).show();
                 showVocab();
                 dialog.dismiss();
@@ -108,18 +106,15 @@ public class MainActivity extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.show();
         EditText edtWord=dialog.findViewById(R.id.etdWord);
-        EditText edtMeaning=dialog.findViewById(R.id.edtMeaning);
         Button edtAddButton=dialog.findViewById(R.id.edtAddBtn);
         edtAddButton.setText("Update Vocab");
 
         edtWord.setText(arrVocab.get(position).getWord());
-        edtMeaning.setText(arrVocab.get(position).getMeaning());
 
         edtAddButton.setOnClickListener(view -> {
             String Word=edtWord.getText().toString();
-            String Meaning=edtMeaning.getText().toString();
             if (!Word.equals("")){
-                VocabDBHelper.getInstance(this).vocabDao().updateVocab(new VocabModel(Word,Meaning,arrVocab.get(position).getId()));
+                VocabDBHelper.getInstance(this).vocabDao().updateVocab(new VocabModel(Word,arrVocab.get(position).getId()));
                 Toast.makeText(this, "Updated", Toast.LENGTH_SHORT).show();
                 showVocab();
                 dialog.dismiss();

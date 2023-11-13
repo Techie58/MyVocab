@@ -77,9 +77,8 @@
             android:id="@+id/txtExample"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
             android:paddingStart="8dp"
-            android:text="Example"
+            android:text="@string/example"
             android:textSize="22sp" />
     </androidx.cardview.widget.CardView>
 
@@ -101,11 +100,10 @@
             android:id="@+id/txtSynonyms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
             android:paddingStart="8dp"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:text="Synonyms"
+            android:text="@string/example"
             android:textSize="23sp" />
     </androidx.cardview.widget.CardView>
 
