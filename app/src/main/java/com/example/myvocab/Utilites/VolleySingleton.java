@@ -1,4 +1,4 @@
-package com.example.myvocab;
+package com.example.myvocab.Utilites;
 
 import android.content.Context;
 import android.graphics.Bitmap;

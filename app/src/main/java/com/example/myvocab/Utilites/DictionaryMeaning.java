@@ -56,10 +56,13 @@ public class DictionaryMeaning {
 
                                         String jsonDefinition = definitionObject.optString("definition");
                                         String jsonExample = definitionObject.optString("example");
+                                        if (!jsonExample.isEmpty()){
+
+                                            binding.txtExample.setText(jsonExample);
+                                        }else {binding.txtExample.setText("There is No Example");}
 
                                         binding.txtSynonyms.setText("Will be added soon! ");
                                         binding.txtMeaning.setText(jsonDefinition);
-                                        binding.txtExample.setText(jsonExample);
                                     }
                                 } else {
                                     // Handle the case where meanings or definitions array is empty
