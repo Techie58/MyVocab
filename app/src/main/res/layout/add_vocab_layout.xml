@@ -36,7 +36,7 @@
         android:background="@drawable/btn_bg"
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
-        android:text="Confirm"
+        android:text="SAVE"
         android:textColor="@color/white"
         android:textSize="20sp" />
 

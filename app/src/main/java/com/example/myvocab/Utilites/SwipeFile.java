@@ -1,7 +1,6 @@
 package com.example.myvocab.Utilites;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
@@ -13,7 +12,6 @@ import com.example.myvocab.MainActivity;
 import com.example.myvocab.MeaningActivity;
 import com.example.myvocab.database.VocabDBHelper;
 import com.example.myvocab.database.VocabModel;
-import com.example.myvocab.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 
