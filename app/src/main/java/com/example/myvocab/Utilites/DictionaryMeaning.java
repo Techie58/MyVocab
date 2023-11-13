@@ -56,11 +56,8 @@ public class DictionaryMeaning {
 
                                         String jsonDefinition = definitionObject.optString("definition");
                                         String jsonExample = definitionObject.optString("example");
-                                        String jsonSynonyms = definitionObject.optString("synonyms");
 
-                                        if (!jsonSynonyms.isEmpty()){
-                                        binding.txtSynonyms.setText(jsonSynonyms);
-                                        }else binding.txtSynonyms.setText("There is not synonyms of this word");
+                                        binding.txtSynonyms.setText("Will be added soon! ");
                                         binding.txtMeaning.setText(jsonDefinition);
                                         binding.txtExample.setText(jsonExample);
                                     }
