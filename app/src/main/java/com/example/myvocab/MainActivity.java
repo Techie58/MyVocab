@@ -17,7 +17,6 @@ import android.os.Bundle;
 
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RemoteViewsService;
 import android.widget.Toast;
 
 import com.example.myvocab.Utilites.StackView;
@@ -140,7 +139,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Get the AppWidgetIds that are active for your StackView widget
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
-        StackView stackView = new StackView();
 
         // Update the StackView widget
         for (int appWidgetId : appWidgetIds) {
