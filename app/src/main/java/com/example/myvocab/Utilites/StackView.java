@@ -20,19 +20,14 @@ public class StackView extends AppWidgetProvider {
 
     public static Intent serviceIntent;
 
-    public  Intent getServiceIntent(Context context, int appWidgetId) {
-        serviceIntent = new Intent(context, StackViewService.class);
-        serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-        serviceIntent.setData(Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME)));
-        Log.d("StackView","This is getServiceIntent method ");
-        return serviceIntent;
-    }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds) {
-            getServiceIntent(context,appWidgetId);
+            serviceIntent = new Intent(context, StackViewService.class);
+            serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+            serviceIntent.setData(Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME)));
             Log.d("StackView","This is onUpdate method of Stack View");
             updateAppWidget(context, appWidgetManager, appWidgetId, serviceIntent);
         }
