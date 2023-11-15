@@ -132,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void updateWidget() {
-        Toast.makeText(this, "Update method is working", Toast.LENGTH_SHORT).show();
         // Get the AppWidgetManager
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
 

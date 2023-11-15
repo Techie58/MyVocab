@@ -47,14 +47,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull RVAdapter.ViewHolder holder, int position) {
         holder.txtWord.setText(arrVocab.get(position).getWord());
         holder.lWord.setOnClickListener(view -> spekTxt(arrVocab.get(position).getWord()));
-        holder.lWord.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                ((MainActivity)context).updateWidget();
-                Toast.makeText(context, "Widget is updating......", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
     }
 
 
