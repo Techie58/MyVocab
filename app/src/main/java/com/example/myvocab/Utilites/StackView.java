@@ -6,7 +6,9 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import com.example.myvocab.MainActivity;
 import com.example.myvocab.R;
@@ -16,16 +18,23 @@ import com.example.myvocab.R;
  */
 public class StackView extends AppWidgetProvider {
 
-    static Intent serviceIntent;
+    public static Intent serviceIntent;
+
+    public  Intent getServiceIntent(Context context, int appWidgetId) {
+        serviceIntent = new Intent(context, StackViewService.class);
+        serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+        serviceIntent.setData(Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME)));
+        Log.d("StackView","This is getServiceIntent method ");
+        return serviceIntent;
+    }
+
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds) {
-            serviceIntent=new Intent(context, StackViewService.class);
-            serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetId);
-            serviceIntent.setData(Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME)));
-
-            updateAppWidget(context, appWidgetManager, appWidgetId);
+            getServiceIntent(context,appWidgetId);
+            Log.d("StackView","This is onUpdate method of Stack View");
+            updateAppWidget(context, appWidgetManager, appWidgetId, serviceIntent);
         }
     }
 
@@ -39,22 +48,26 @@ public class StackView extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-            int appWidgetId) {
+    // Make this method public
+    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+                                       int appWidgetId, Intent serviceIntent) {
+        if (serviceIntent != null) { // Check if serviceIntent is not null
+            // Construct the RemoteViews object
+            Log.d("StackView","This is updateAppWidget method of Stack Activity");
+            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.stak_view);
+            views.setTextViewText(R.id.stackViewEmptyTxt, "EMpty");
+            views.setRemoteAdapter(R.id.stackView, serviceIntent);
+            views.setEmptyView(R.id.stackView, R.id.stackViewEmptyTxt);
 
-        CharSequence widgetText = context.getString(R.string.appwidget_text);
-        // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.stak_view);
-        views.setTextViewText(R.id.stackViewEmptyTxt, widgetText);
-        views.setRemoteAdapter(R.id.stackView,serviceIntent);
-        views.setEmptyView(R.id.stackView,R.id.stackViewEmptyTxt);
-        Intent intent=new Intent(context, MainActivity.class);
-        PendingIntent pendingIntent=PendingIntent.getActivity(context,0,intent, PendingIntent.FLAG_IMMUTABLE);
+            Intent intent = new Intent(context, MainActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            views.setOnClickPendingIntent(R.id.stackView_Item_Txt, pendingIntent);
 
-        views.setOnClickPendingIntent(R.id.stackView_Item_Txt,pendingIntent);
-
-
-        // Instruct the widget manager to update the widget
-        appWidgetManager.updateAppWidget(appWidgetId, views);
+            // Instruct the widget manager to update the widget
+            appWidgetManager.updateAppWidget(appWidgetId, views);
+        } else {
+            // Log or handle the case when serviceIntent is null
+            Toast.makeText(context, "serviceIntent is null", Toast.LENGTH_SHORT).show();
+        }
     }
 }
