@@ -74,7 +74,7 @@ public class StackView extends AppWidgetProvider {
             Intent clickIntent=new Intent(context,StackView.class);
             clickIntent.setAction(ACTION_TOAST);
             PendingIntent clickPendingIntent=PendingIntent.getBroadcast(context,
-                    0,clickIntent,0);
+                    0,clickIntent, PendingIntent.FLAG_IMMUTABLE);
 
             views.setPendingIntentTemplate(R.id.stackView,clickPendingIntent);
 
