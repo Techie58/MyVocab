@@ -73,8 +73,7 @@ public class StackView extends AppWidgetProvider {
             views.setOnClickPendingIntent(R.id.stackView_Item_Txt, pendingIntent);
             Intent clickIntent=new Intent(context,StackView.class);
             clickIntent.setAction(ACTION_TOAST);
-            PendingIntent clickPendingIntent=PendingIntent.getBroadcast(context,
-                    0,clickIntent, PendingIntent.FLAG_IMMUTABLE);
+            PendingIntent clickPendingIntent = PendingIntent.getBroadcast(context, 0, clickIntent, 0);
 
             views.setPendingIntentTemplate(R.id.stackView,clickPendingIntent);
 
@@ -89,18 +88,19 @@ public class StackView extends AppWidgetProvider {
         }
     }
 
+// In your StackView class
     @Override
     public void onReceive(Context context, Intent intent) {
         if (ACTION_TOAST.equals(intent.getAction())) {
             int clickedPosition = intent.getIntExtra(EXTRA_ITEM_POSITION, 0);
 
-            TextToSpeech textToSpeech=new TextToSpeech();
             // Move the database query here
             myWord = (ArrayList<VocabModel>) VocabDBHelper.getInstance(context).vocabDao().getAll();
 
             if (myWord != null && clickedPosition < myWord.size()) {
                 Log.d("StackView", "This is onReceive method");
-//                Toast.makeText(context, "Position is " + myWord.get(clickedPosition).getWord(), Toast.LENGTH_SHORT).show();
+                // Pass the context to the position method
+                TextToSpeech textToSpeech = new TextToSpeech();
                 textToSpeech.position(clickedPosition, context.getApplicationContext());
             } else {
                 Toast.makeText(context, "Invalid position or data not available", Toast.LENGTH_SHORT).show();

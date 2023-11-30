@@ -15,6 +15,7 @@ public class TextToSpeech {
     android.speech.tts.TextToSpeech textToSpeech;
 
     // In your TextToSpeech class
+// In your TextToSpeech class
     public void position(int position, Context context) {
         ArrayList<VocabModel> myWord = (ArrayList<VocabModel>) VocabDBHelper.getInstance(context).vocabDao().getAll();
 
@@ -25,7 +26,6 @@ public class TextToSpeech {
             // Use the application context to initialize TextToSpeech
             textToSpeech = new android.speech.tts.TextToSpeech(context.getApplicationContext(), i -> {
                 if (i == android.speech.tts.TextToSpeech.SUCCESS) {
-                    Toast.makeText(context, "speaking", Toast.LENGTH_SHORT).show();
                     textToSpeech.setLanguage(Locale.US);
                     textToSpeech.setSpeechRate(0.5f);
                     textToSpeech.speak(word, android.speech.tts.TextToSpeech.QUEUE_ADD, null);
