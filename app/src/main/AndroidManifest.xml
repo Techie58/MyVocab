@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
 
     <application
         android:allowBackup="true"
@@ -47,6 +50,10 @@
         <service
             android:name=".Utilites.StackViewService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
+        <service
+            android:name=".Utilites.TextToSpeechService"
+            android:exported="false" />
+
     </application>
 
 </manifest>
