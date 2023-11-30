@@ -6,7 +6,6 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
@@ -95,12 +94,14 @@ public class StackView extends AppWidgetProvider {
         if (ACTION_TOAST.equals(intent.getAction())) {
             int clickedPosition = intent.getIntExtra(EXTRA_ITEM_POSITION, 0);
 
+            TextToSpeech textToSpeech=new TextToSpeech();
             // Move the database query here
             myWord = (ArrayList<VocabModel>) VocabDBHelper.getInstance(context).vocabDao().getAll();
 
             if (myWord != null && clickedPosition < myWord.size()) {
                 Log.d("StackView", "This is onReceive method");
-                Toast.makeText(context, "Position is " + myWord.get(clickedPosition).getWord(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Position is " + myWord.get(clickedPosition).getWord(), Toast.LENGTH_SHORT).show();
+                textToSpeech.position(clickedPosition, context.getApplicationContext());
             } else {
                 Toast.makeText(context, "Invalid position or data not available", Toast.LENGTH_SHORT).show();
             }
