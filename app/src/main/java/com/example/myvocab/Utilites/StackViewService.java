@@ -49,7 +49,6 @@ public class StackViewService extends RemoteViewsService {
         @Override
         public void onDataSetChanged() {
             // Typically called when underlying data changes
-            updateData();
         }
 
         @Override
@@ -63,9 +62,14 @@ public class StackViewService extends RemoteViewsService {
         }
 
         @Override
-        public RemoteViews getViewAt(int i) {
+        public RemoteViews getViewAt(int position) {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.stack_view_layout);
-            remoteViews.setTextViewText(R.id.stackView_Item_Txt, myData.get(i).getWord());
+            remoteViews.setTextViewText(R.id.stackView_Item_Txt, myData.get(position).getWord());
+
+            Intent fillIntent=new Intent();
+            fillIntent.putExtra(StackView.EXTRA_ITEM_POSITION,position);
+            remoteViews.setOnClickFillInIntent(R.id.stackView_Item_Txt,fillIntent);
+
             SystemClock.sleep(500);
             return remoteViews;
         }
