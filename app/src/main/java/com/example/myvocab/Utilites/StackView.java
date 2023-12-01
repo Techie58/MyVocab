@@ -25,6 +25,7 @@ public class StackView extends AppWidgetProvider {
 
     public static Intent serviceIntent;
     public static final String ACTION_TOAST ="actionToast";
+    public static final String ACTION_REFRESH ="actionRefresh";
     public static final String EXTRA_ITEM_POSITION="extraItemPosition";
     ArrayList<VocabModel> myWord;
 
@@ -42,6 +43,8 @@ public class StackView extends AppWidgetProvider {
 
             Log.d("StackView","This is onUpdate method of Stack View  "+myWord.get(1).getWord());
             updateAppWidget(context, appWidgetManager, appWidgetId, serviceIntent);
+            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId,R.id.stackView);
+
         }
     }
 
@@ -91,8 +94,12 @@ public class StackView extends AppWidgetProvider {
 // In your StackView class
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (ACTION_TOAST.equals(intent.getAction())) {
+        if (ACTION_TOAST.equals(intent.getAction()) || ACTION_REFRESH.equals(intent.getAction())) {
             int clickedPosition = intent.getIntExtra(EXTRA_ITEM_POSITION, 0);
+            int appWidgetId=intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,AppWidgetManager.INVALID_APPWIDGET_ID);
+
+            AppWidgetManager appWidgetManager=AppWidgetManager.getInstance(context);
+            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId,R.id.stackView);
 
             // Move the database query here
             myWord = (ArrayList<VocabModel>) VocabDBHelper.getInstance(context).vocabDao().getAll();

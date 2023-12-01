@@ -107,26 +107,28 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private void updateVocab(int position) {
-        Dialog dialog=new Dialog(this);
+        Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.add_vocab_layout);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
         dialog.show();
-        EditText edtWord=dialog.findViewById(R.id.etdWord);
-        Button edtAddButton=dialog.findViewById(R.id.edtAddBtn);
+        EditText edtWord = dialog.findViewById(R.id.etdWord);
+        Button edtAddButton = dialog.findViewById(R.id.edtAddBtn);
         edtAddButton.setText("Update Vocab");
 
         edtWord.setText(arrVocab.get(position).getWord());
 
         edtAddButton.setOnClickListener(view -> {
-            String Word=edtWord.getText().toString();
-            if (!Word.equals("")){
-                VocabDBHelper.getInstance(this).vocabDao().updateVocab(new VocabModel(Word,arrVocab.get(position).getId()));
+            String Word = edtWord.getText().toString();
+            if (!Word.equals("")) {
+                VocabDBHelper.getInstance(this).vocabDao().updateVocab(new VocabModel(Word, arrVocab.get(position).getId()));
                 Toast.makeText(this, "Updated", Toast.LENGTH_SHORT).show();
                 showVocab();
                 dialog.dismiss();
+                Toast.makeText(this, "Press on any card of the widget to refresh them...", Toast.LENGTH_SHORT).show();
 
-            }else Toast.makeText(this, "Please Enter Any Word", Toast.LENGTH_SHORT).show();
+            } else Toast.makeText(this, "Please Enter Any Word", Toast.LENGTH_SHORT).show();
         });
     }
+
 }

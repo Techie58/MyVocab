@@ -3,7 +3,6 @@ package com.example.myvocab.Utilites;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
-import android.os.SystemClock;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -49,6 +48,8 @@ public class StackViewService extends RemoteViewsService {
         @Override
         public void onDataSetChanged() {
             // Typically called when underlying data changes
+            myData=(ArrayList<VocabModel>) database.vocabDao().getAll();
+
         }
 
         @Override
@@ -68,9 +69,9 @@ public class StackViewService extends RemoteViewsService {
 
             Intent fillIntent=new Intent();
             fillIntent.putExtra(StackView.EXTRA_ITEM_POSITION,position);
+            fillIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetId);
             remoteViews.setOnClickFillInIntent(R.id.stackView_Item_Txt,fillIntent);
 
-            SystemClock.sleep(500);
             return remoteViews;
         }
 

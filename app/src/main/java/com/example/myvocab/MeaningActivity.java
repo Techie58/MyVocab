@@ -73,6 +73,17 @@ public class MeaningActivity extends AppCompatActivity {
                             public void onSuccess(Void unused) {
                                 progressDialog.dismiss();
                                 Toast.makeText(MeaningActivity.this, "Language Model is Downloaded", Toast.LENGTH_SHORT).show();
+                                englishGermanTranslator.translate(word).addOnSuccessListener(new OnSuccessListener<String>() {
+                                    @Override
+                                    public void onSuccess(String s) {
+                                        binding.txtTranslation.setText(s);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        binding.txtTranslation.setText(word);
+                                    }
+                                });
                                 booleanUrdu = true;
                             }
                         })
@@ -85,16 +96,6 @@ public class MeaningActivity extends AppCompatActivity {
                             }
                         });
 
-        englishGermanTranslator.translate(word).addOnSuccessListener(new OnSuccessListener<String>() {
-            @Override
-            public void onSuccess(String s) {
-                binding.txtTranslation.setText(s);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                binding.txtTranslation.setText(String.valueOf(e));
-            }
-        });
+
     }
 }

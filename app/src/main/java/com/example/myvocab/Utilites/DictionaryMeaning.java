@@ -61,7 +61,7 @@ public class DictionaryMeaning {
                                             binding.txtExample.setText(jsonExample);
                                         }else {binding.txtExample.setText("There is No Example");}
 
-                                        binding.txtSynonyms.setText("Will be added soon! ");
+                                        binding.txtSynonyms.setText("Example 2 Will be added soon! ");
                                         binding.txtMeaning.setText(jsonDefinition);
                                     }
                                 } else {
@@ -81,7 +81,7 @@ public class DictionaryMeaning {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "Error: " + error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Please Turn On Your Internet ", Toast.LENGTH_SHORT).show();
                 dictionaryProgressDialog.dismiss();
             }
         });
